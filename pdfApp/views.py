@@ -13,4 +13,7 @@ def to_pdf(request):
 def to_pdf_func():
     doc_pdf = pdfkit.from_string(html)
     print(doc_pdf)
+    file = open("sample.pdf", "wb")
+    file.write(doc_pdf)
+    file.close()
     return html
