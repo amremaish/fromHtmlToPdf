@@ -1,6 +1,6 @@
 import pdfkit
 from django.http import HttpResponse
-from django.shortcuts import render
+from weasyprint import HTML
 
 html = '<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>'
 
@@ -11,7 +11,7 @@ def to_pdf(request):
 
 
 def to_pdf_func():
-    doc_pdf = pdfkit.from_string(html)
+    doc_pdf = HTML(string=html, base_url="").write_pdf()
     print(doc_pdf)
     file = open("sample.pdf", "wb")
     file.write(doc_pdf)
